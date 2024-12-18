@@ -4,7 +4,7 @@ Feature: Saucedemo User Logout
     Given the home page is opened
 
 
-  Scenario Outline: User can log out successfully after logging in
+  Scenario Outline: User can log out successfully
     Given the 'Username' field is filled with '<username>'
     And the 'Password' field is filled with '<password>'
     When the 'Login' button is clicked

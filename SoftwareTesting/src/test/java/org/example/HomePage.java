@@ -32,6 +32,9 @@ public class HomePage {
     @FindBy(css = "#checkout_summary_container > div > div.summary_info > div.summary_total_label")
     private WebElement priceLabel;
 
+    @FindBy(css = "#checkout_info_container > div > form > div.checkout_info > div.error-message-container.error")
+    private WebElement checkoutErrorMessage;
+
     private static final Map<String, By> textFields = Map.of(
             "Username", By.id("user-name"),
             "Password", By.id("password"),
@@ -60,7 +63,9 @@ public class HomePage {
             Map.entry("Twitter", By.className("social_twitter")),
             Map.entry("Facebook", By.className("social_facebook")),
             Map.entry("LinkedIn", By.className("social_linkedin")),
-            Map.entry("About", By.id("about_sidebar_link"))
+            Map.entry("About", By.id("about_sidebar_link")),
+            Map.entry("Reset", By.id("reset_sidebar_link")),
+            Map.entry("Finish", By.id("finish"))
     );
 
 
@@ -100,6 +105,7 @@ public class HomePage {
     public String getTotal() {
         return priceLabel.getText();
     }
+    public String getCheckOutErrorMessage() {return checkoutErrorMessage.getText();}
 
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
@@ -135,6 +141,17 @@ public class HomePage {
 
         return redirectedUrl;
     }
+
+    public void emptyCart() {
+        driver.navigate().to("https://www.saucedemo.com/cart.html");
+        driver.findElements(By.cssSelector(".cart_item .btn_secondary"))
+                .forEach(WebElement::click);
+    }
+
+    public List<WebElement> locateThumbnail() {
+        return driver.findElements(By.cssSelector(".inventory_item_img img"));
+    }
+
 
 
 

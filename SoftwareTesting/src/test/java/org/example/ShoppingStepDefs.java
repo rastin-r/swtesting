@@ -21,5 +21,12 @@ public class ShoppingStepDefs extends AbstractStepDefs {
         assertEquals(total, homePage.getTotal());
     }
 
+    @Then("the shopping cart must be emptied")
+    public void theShoppingCartMustBeEmpty() { homePage.emptyCart();}
 
+
+    @Then("the checkout error {string} is shown")
+    public void theCheckoutErrorCheckoutErrorMessageIsShown(String checkoutError) {
+        assertEquals(checkoutError, homePage.getCheckOutErrorMessage());
+    }
 }
